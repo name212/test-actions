@@ -48,7 +48,7 @@ jobs:
           REPLACE: "3"
         with:
           cmd: |
-            echo 'steps.set_input.outputs.YAML_INPUT' | '. += env(TO_ADD) , .arr[1] = env(REPLACE)'
+            echo '${{steps.set_input.outputs.YAML_INPUT}}' | '. += env(TO_ADD) , .arr[1] = env(REPLACE)'
           # envs: |
           #   {
           #     "INPUT": ${{ toJSON(steps.set_input.outputs.YAML_INPUT) }}, 
