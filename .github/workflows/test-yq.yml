@@ -42,10 +42,10 @@ jobs:
           echo '${{ steps.set_input.outputs.YAML_INPUT }}'
       - name: 
         id: test_envs
-        uses: name212/yq@09f413310908ac8e5b49894ad42c790545a4bcf5
+        uses: name212/yq@d4e21a477fcb47dec8af632a406cf0eee4a80a5c
         with:
           cmd: |
-            echo "$INPUT" | '.'
+            echo "$INPUT" | '. += env(TO_ADD) , .arr[1] = env(REPLACE)'
           envs: |
             {
               "INPUT": ${{ toJSON(steps.set_input.outputs.YAML_INPUT) }}, 
