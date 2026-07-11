@@ -42,16 +42,19 @@ jobs:
           echo '${{ steps.set_input.outputs.YAML_INPUT }}'
       - name: 
         id: test_envs
-        uses: name212/yq@d4e21a477fcb47dec8af632a406cf0eee4a80a5c
+        uses: mikefarah/yq@main
+        env:
+          TO_ADD: "{\"c\": true}" 
+          REPLACE: "3"
         with:
           cmd: |
-            echo "$INPUT" | '. += env(TO_ADD) , .arr[1] = env(REPLACE)'
-          envs: |
-            {
-              "INPUT": ${{ toJSON(steps.set_input.outputs.YAML_INPUT) }}, 
-              "TO_ADD": "{\"c\": true}", 
-              "REPLACE": "3"
-            }
+            echo 'steps.set_input.outputs.YAML_INPUT' | '. += env(TO_ADD) , .arr[1] = env(REPLACE)'
+          # envs: |
+          #   {
+          #     "INPUT": ${{ toJSON(steps.set_input.outputs.YAML_INPUT) }}, 
+          #     "TO_ADD": "{\"c\": true}", 
+          #     "REPLACE": "3"
+          #   }
       - name: "Show result"
         id: show_result
         run: |
