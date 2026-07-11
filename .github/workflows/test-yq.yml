@@ -42,7 +42,7 @@ jobs:
           echo '${{ steps.set_input.outputs.YAML_INPUT }}'
       - name: 
         id: test_envs
-        uses: mikefarah/yq@main
+        uses: mikefarah/yq@master
         env:
           TO_ADD: "{\"c\": true}" 
           REPLACE: "3"
