@@ -45,7 +45,7 @@ jobs:
         uses: name212/yq@09f413310908ac8e5b49894ad42c790545a4bcf5
         with:
           cmd: |
-            echo "$INPUT" | '. += env(TO_ADD) , .arr[1] = env(REPLACE)'
+            echo "$INPUT" | '.'
           envs: |
             {
               "INPUT": ${{ toJSON(steps.set_input.outputs.YAML_INPUT) }}, 
