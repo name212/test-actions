@@ -48,8 +48,7 @@ jobs:
           TO_ADD: "{\"c\": true}" 
           REPLACE: "3"
         with:
-          cmd: |
-            cat ./.tmp-aaaaaa.yaml | '. += env(TO_ADD) , .arr[1] = env(REPLACE)'
+          cmd: "cat ./.tmp-aaaaaa.yaml | '. += env(TO_ADD) , .arr[1] = env(REPLACE)'"
           # envs: |
           #   {
           #     "INPUT": ${{ toJSON(steps.set_input.outputs.YAML_INPUT) }}, 
