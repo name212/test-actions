@@ -1,12 +1,21 @@
 name: 'Submodule test action'
 description: 'Submodule test'
-
+inputs:
+  deploy_env:
+    description: 'Test input'
+    required: true
+outputs:
+  res: 
+    description: 'Test output. Always OK'
+    value: ${{ steps.print.outputs.res }}
 runs:
   using: composite
   steps:
   - name: "Print message"
+    id: print
     shell: bash
     env:
       action_dir: ${{ github.action_path }}
     run: |
       echo "Hello submodule dir action in ${action_dir}"
+      echo "res=OK" >> $GITHUB_OUTPUT
