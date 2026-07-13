@@ -1,0 +1,12 @@
+name: 'Submodule test action'
+description: 'Submodule test'
+
+runs:
+  using: composite
+  steps:
+  - name: "Print message"
+    shell: bash
+    env:
+      action_dir: ${{ github.action_path }}
+    run: |
+      echo "Hello submodule dir action in ${action_dir}"
